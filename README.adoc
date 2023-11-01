@@ -1,0 +1,94 @@
+= Tramotech Tool
+
+Tramotech Tool is a Java library that provides annotations for configuring and initializing your application using external configuration files. It simplifies the process of reading configuration properties and injecting them into your classes.
+
+== Features
+
+* Annotate classes with `@TConfiguration` to specify the configuration file.
+* Annotate fields with `@TValue` to inject configuration properties.
+
+== Installation
+
+To use MyLibrary in your project, you can add it as a Maven dependency.
+
+[source,xml]
+----
+<dependency>
+    <groupId>com.github.afikri-code</groupId>
+    <artifactId>tramotool</artifactId>
+    <version>0.0.1</version> // Use the latest release version
+</dependency>
+----
+
+Ensure that you have configured the GitHub repository as a Maven repository in your project's `pom.xml`.
+
+[source,xml]
+----
+<repositories>
+    <repository>
+        <id>github</id>
+        <url>https://maven.pkg.github.com/afikri-code/tools</url>
+        <releases>
+            <enabled>true</enabled>
+        </releases>
+        <snapshots>
+            <enabled>true</enabled>
+        </snapshots>
+    </repository>
+</repositories>
+----
+
+== Usage
+
+Here's how you can use MyLibrary in your Java application:
+
+[source,java,options=nowrap]
+----
+import de.tramotech.ioutils.annotations.ConfigInitializer;
+import de.tramotech.ioutils.annotations.TConfiguration;
+import de.tramotech.ioutils.annotations.TValue;
+
+@TConfiguration(filename = "myconfig.properties")
+public class MyConfigClass {
+    @TValue(name = "prop1")
+    private String property1;
+
+    @TValue(name = "prop2")
+    private int property2;
+
+     public MyConfigClass() {
+         // Call this method to execute the annotations and initialize the configuration
+         ConfigInitializer.initialize(this); // Initialize the class during construction
+    }
+
+    // ... Your class logic ...
+}
+----
+
+Annotate classes with `@TConfiguration` to specify the configuration file for the class.
+This annotation is used to indicate the name of the configuration file that should be
+associated with the annotated class.
+
+Annotate fields with `@TValue` to inject configuration properties.
+If the `name` attribute is not provided, it defaults to the field name itself.
+
+The `*ConfigInitializer.initialize(this)*` method needs to be called either in the constructor or in any other post-construction method of the class annotated with @TConfiguration. This is how you ensure that the annotations are processed and the configuration is initialized.
+
+
+== License
+
+This library is released under the MIT License. See link:LICENSE[here] for details.
+
+== Contributions
+
+We welcome contributions from the community. If you find a bug, have an enhancement request, or want to contribute to the project, please open an issue or submit a pull request.
+
+== Contact
+
+For any questions or feedback, please contact github@afikri.de.
+
+[GitHub Repository]:: https://github.com/afikri-code/tools
+
+---
+
+© Ahmed Fikri (https://github.com/afikri-code)
