@@ -19,7 +19,7 @@
    <repository>
      <id>github</id>
      <name>GitHub afikri-code Apache Maven Packages</name>
-     <url>https://maven.pkg.github.com/afikri-code/tramotool</url>
+     <url>https://maven.pkg.github.com/vp826425/tramotool</url>
    </repository>
 </distributionManagement>
 
